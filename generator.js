@@ -7,8 +7,7 @@ const firebaseConfig = {
   projectId: "work1-bd13f",
   storageBucket: "work1-bd13f.firebasestorage.app",
   messagingSenderId: "123748250468",
-  appId: "1:123748250468:web:f7be9f336dd695ac8dc071",
-  measurementId: "G-2KXHCHL9K2"
+  appId: "1:123748250468:web:f7be9f336dd695ac8dc071"
 };
 
 const app = initializeApp(firebaseConfig);
@@ -29,20 +28,13 @@ form.addEventListener('submit', async (e) => {
             songTitle: document.getElementById('song-title').value,
             artistName: document.getElementById('artist-name').value,
             songUrl: document.getElementById('song-url').value,
-           photos: [
+            photos: [
                 document.getElementById('photo-1').value,
                 document.getElementById('photo-2').value,
                 document.getElementById('photo-3').value,
                 document.getElementById('photo-4').value,
-                document.getElementById('cover-photo').value,
-                document.getElementById('strip-1').value,
-                document.getElementById('strip-2').value,
-                document.getElementById('strip-3').value,
-                document.getElementById('strip-4').value,
-                document.getElementById('strip-5').value,
-                document.getElementById('strip-6').value,
-                document.getElementById('strip-7').value,
-                document.getElementById('strip-8').value
+                document.getElementById('photo-5').value,
+                document.getElementById('cover-photo').value
             ],
             createdAt: new Date()
         });
