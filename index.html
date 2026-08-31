@@ -7,30 +7,42 @@
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
-    <div class="screen active">
+    <div class="screen active" style="overflow: auto; max-height: 100vh; padding: 20px 0;">
         <h2 class="title" style="margin-bottom: 20px;">Create Your Custom Gift 🎁</h2>
-        <form id="generator-form" style="display: flex; flex-direction: column; gap: 15px; width: 80%; max-width: 500px; text-align: left; margin: 0 auto;">
+        <form id="generator-form" style="display: flex; flex-direction: column; gap: 12px; width: 85%; max-width: 500px; text-align: left; margin: 0 auto;">
             
             <label style="font-weight: bold; color: #db2777;">Love Letter Text:</label>
-            <textarea id="letter-input" rows="4" style="padding: 10px; border-radius: 8px; border: 1px solid #fbcfe8;" required></textarea>
+            <textarea id="letter-input" rows="3" style="padding: 10px; border-radius: 8px; border: 1px solid #fbcfe8;" required></textarea>
 
             <label style="font-weight: bold; color: #db2777;">Song Title & Artist:</label>
-            <input type="text" id="song-title" placeholder="e.g. Risk It All" style="padding: 10px; border-radius: 8px; border: 1px solid #fbcfe8;" required>
-            <input type="text" id="artist-name" placeholder="e.g. Bruno Mars" style="padding: 10px; border-radius: 8px; border: 1px solid #fbcfe8;" required>
+            <input type="text" id="song-title" placeholder="e.g. Risk It All" style="padding: 8px; border-radius: 8px; border: 1px solid #fbcfe8;" required>
+            <input type="text" id="artist-name" placeholder="e.g. Bruno Mars" style="padding: 8px; border-radius: 8px; border: 1px solid #fbcfe8;" required>
             
-            <label style="font-weight: bold; color: #db2777;">Song URL (MP3 link):</label>
-            <input type="url" id="song-url" placeholder="Paste MP3 link here" style="padding: 10px; border-radius: 8px; border: 1px solid #fbcfe8;" required>
+            <label style="font-weight: bold; color: #db2777;">Song URL (MP3 link ending in ?raw=1):</label>
+            <input type="url" id="song-url" placeholder="Paste MP3 link here" style="padding: 8px; border-radius: 8px; border: 1px solid #fbcfe8;" required>
 
-            <label style="font-weight: bold; color: #db2777;">Paste 5 Photo URLs:</label>
-            <input type="url" id="photo-1" placeholder="Photo 1 Link" style="padding: 10px; border-radius: 8px; border: 1px solid #fbcfe8;" required>
-            <input type="url" id="photo-2" placeholder="Photo 2 Link" style="padding: 10px; border-radius: 8px; border: 1px solid #fbcfe8;" required>
-            <input type="url" id="photo-3" placeholder="Photo 3 Link" style="padding: 10px; border-radius: 8px; border: 1px solid #fbcfe8;" required>
-            <input type="url" id="photo-4" placeholder="Photo 4 Link" style="padding: 10px; border-radius: 8px; border: 1px solid #fbcfe8;" required>
-            <input type="url" id="photo-5" placeholder="Photo 5 Link" style="padding: 10px; border-radius: 8px; border: 1px solid #fbcfe8;" required>
+            <label style="font-weight: bold; color: #db2777;">1 Song Cover Photo URL:</label>
+            <input type="url" id="cover-photo" placeholder="Cover Image Link" style="padding: 8px; border-radius: 8px; border: 1px solid #fbcfe8;" required>
+
+            <label style="font-weight: bold; color: #db2777;">4 Outer Photo URLs:</label>
+            <input type="url" id="photo-1" placeholder="Outer Photo 1" style="padding: 8px; border-radius: 8px; border: 1px solid #fbcfe8;" required>
+            <input type="url" id="photo-2" placeholder="Outer Photo 2" style="padding: 8px; border-radius: 8px; border: 1px solid #fbcfe8;" required>
+            <input type="url" id="photo-3" placeholder="Outer Photo 3" style="padding: 8px; border-radius: 8px; border: 1px solid #fbcfe8;" required>
+            <input type="url" id="photo-4" placeholder="Outer Photo 4" style="padding: 8px; border-radius: 8px; border: 1px solid #fbcfe8;" required>
+
+            <label style="font-weight: bold; color: #db2777;">8 Mini Strip Photo URLs:</label>
+            <input type="url" id="strip-1" placeholder="Strip Photo 1" style="padding: 8px; border-radius: 8px; border: 1px solid #fbcfe8;" required>
+            <input type="url" id="strip-2" placeholder="Strip Photo 2" style="padding: 8px; border-radius: 8px; border: 1px solid #fbcfe8;" required>
+            <input type="url" id="strip-3" placeholder="Strip Photo 3" style="padding: 8px; border-radius: 8px; border: 1px solid #fbcfe8;" required>
+            <input type="url" id="strip-4" placeholder="Strip Photo 4" style="padding: 8px; border-radius: 8px; border: 1px solid #fbcfe8;" required>
+            <input type="url" id="strip-5" placeholder="Strip Photo 5" style="padding: 8px; border-radius: 8px; border: 1px solid #fbcfe8;" required>
+            <input type="url" id="strip-6" placeholder="Strip Photo 6" style="padding: 8px; border-radius: 8px; border: 1px solid #fbcfe8;" required>
+            <input type="url" id="strip-7" placeholder="Strip Photo 7" style="padding: 8px; border-radius: 8px; border: 1px solid #fbcfe8;" required>
+            <input type="url" id="strip-8" placeholder="Strip Photo 8" style="padding: 8px; border-radius: 8px; border: 1px solid #fbcfe8;" required>
 
             <button type="submit" class="btn yes" style="margin-top: 10px;">Generate My Link</button>
         </form>
-        <div id="output-link" style="margin-top: 20px; font-weight: bold; color: #db2777; text-align: center;"></div>
+        <div id="output-link" style="margin-top: 20px; font-weight: bold; color: #db2777; text-align: center; margin-bottom: 40px;"></div>
     </div>
     
     <script type="module" src="generator.js"></script>
