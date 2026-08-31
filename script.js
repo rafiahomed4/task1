@@ -37,18 +37,18 @@ if (noBtn) {
     });
 }
 
-if (yesBtn) {
-    yesBtn.addEventListener('click', () => {
-        showScreen('success-container');
-    });
-}
-
-// Navigation Logic
-function showScreen(screenId) {
+// FORCE the function to be global so the HTML can see it
+window.showScreen = function(screenId) {
     document.querySelectorAll('.screen').forEach(screen => {
         screen.classList.remove('active');
     });
     document.getElementById(screenId).classList.add('active');
+};
+
+if (yesBtn) {
+    yesBtn.addEventListener('click', () => {
+        window.showScreen('success-container');
+    });
 }
 
 // Vinyl Spin Logic
