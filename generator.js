@@ -29,12 +29,20 @@ form.addEventListener('submit', async (e) => {
             songTitle: document.getElementById('song-title').value,
             artistName: document.getElementById('artist-name').value,
             songUrl: document.getElementById('song-url').value,
-            photos: [
+           photos: [
                 document.getElementById('photo-1').value,
                 document.getElementById('photo-2').value,
                 document.getElementById('photo-3').value,
                 document.getElementById('photo-4').value,
-                document.getElementById('photo-5').value
+                document.getElementById('cover-photo').value,
+                document.getElementById('strip-1').value,
+                document.getElementById('strip-2').value,
+                document.getElementById('strip-3').value,
+                document.getElementById('strip-4').value,
+                document.getElementById('strip-5').value,
+                document.getElementById('strip-6').value,
+                document.getElementById('strip-7').value,
+                document.getElementById('strip-8').value
             ],
             createdAt: new Date()
         });
