@@ -56,3 +56,4 @@ if (audio && vinyl) {
         vinyl.style.animationPlayState = 'paused';
     });
 }
+}
