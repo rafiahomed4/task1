@@ -3,128 +3,38 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>For You 🩷</title>
+    <title>Create Your Gift 🩷</title>
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
-    <!-- Question Screen -->
-    <div id="question-container" class="screen active">
-        <!-- REPLACE ask.gif with your asking cat gif -->
-        <img src="ask.gif" alt="Cute cat" class="gif">
-        <h2 id="question-text">Do you love me? 🩷</h2>
-        <div class="btn-group">
-            <button id="yes-btn" class="btn yes">YES</button>
-            <button id="no-btn" class="btn no">NO</button>
-        </div>
-    </div>
-
-    <!-- Success Screen -->
-    <div id="success-container" class="screen">
-        <h2 class="title">I knew you'd say yes 💕</h2>
-        <!-- REPLACE yes.gif with your kissing cat gif -->
-        <img src="yes.gif" alt="Kiss cat" class="gif">
-        <div class="gift-row">
-            <div class="gift-box" onclick="showScreen('gift-1')">
-                <!-- REPLACE 'gift-icon.png' with your pink gift box image -->
-                <img src="gift-icon.png" class="gift-img" alt="Gift 1"><br>GIFT 1
-            </div>
-            <div class="gift-box" onclick="showScreen('gift-2')">
-                <img src="gift-icon.png" class="gift-img" alt="Gift 2"><br>GIFT 2
-            </div>
-            <div class="gift-box" onclick="showScreen('gift-3')">
-                <img src="gift-icon.png" class="gift-img" alt="Gift 3"><br>GIFT 3
-            </div>
-        </div>
-    </div>
-
-    <!-- Gift 1: Photos (Enhanced Layout) -->
-    <div id="gift-1" class="screen">
-        <h2 class="title" style="margin-bottom: 30px;">Captured memories</h2>
-        
-        <div class="gallery-wrapper">
-            <!-- Decorative Floating Elements -->
-            <div class="decor decor-1">✨</div>
-            <div class="decor decor-2">💖</div>
-            <div class="decor decor-3">✨</div>
+    <div class="screen active" style="padding: 20px; overflow-y: auto;">
+        <h2 class="title" style="margin-bottom: 20px;">Create Your Custom Gift 🎁</h2>
+        <form id="generator-form" style="display: flex; flex-direction: column; gap: 15px; width: 100%; max-width: 400px; text-align: left;">
             
-            <!-- Left Polaroids -->
-            <div class="polaroid-col">
-                <div class="polaroid p-left-1">
-                    <img src="photo1.jpg" alt="Memory"> 
-                </div>
-                <div class="polaroid p-left-2">
-                    <img src="photo2.jpg" alt="Memory">
-                </div>
-                <p class="caption">memories with you</p>
-            </div>
+            <label style="font-weight: bold; color: #db2777;">Love Letter Text:</label>
+            <textarea id="letter-input" rows="4" style="padding: 10px; border-radius: 8px; border: 1px solid #fbcfe8;" required></textarea>
 
-            <!-- Middle Photo Strips -->
-            <div class="strip-col">
-                <div class="photostrip">
-                    <img src="strip1.jpg"><img src="strip2.jpg"><img src="strip3.jpg"><img src="strip4.jpg">
-                </div>
-                <div class="photostrip">
-                    <img src="strip5.jpg"><img src="strip6.jpg"><img src="strip7.jpg"><img src="strip8.jpg">
-                </div>
-            </div>
+            <label style="font-weight: bold; color: #db2777;">Song Title & Artist:</label>
+            <input type="text" id="song-title" placeholder="e.g. Risk It All" style="padding: 10px; border-radius: 8px;" required>
+            <input type="text" id="artist-name" placeholder="e.g. Bruno Mars" style="padding: 10px; border-radius: 8px;" required>
 
-            <!-- Right Polaroids -->
-            <div class="polaroid-col">
-                <div class="polaroid p-right-1">
-                    <img src="photo3.jpg" alt="Memory">
-                </div>
-                <div class="polaroid p-right-2">
-                    <img src="photo4.jpg" alt="Memory">
-                </div>
-                <p class="caption">us, in frames</p>
-            </div>
+            <label style="font-weight: bold; color: #db2777;">Direct Audio URL (MP3):</label>
+            <input type="url" id="song-url" placeholder="https://..." style="padding: 10px; border-radius: 8px;" required>
+
+            <label style="font-weight: bold; color: #db2777;">Direct Photo URLs (JPG/PNG):</label>
+            <input type="url" id="photo-1" placeholder="Photo 1 URL" style="padding: 10px; border-radius: 8px;" required>
+            <input type="url" id="photo-2" placeholder="Photo 2 URL" style="padding: 10px; border-radius: 8px;" required>
+            <input type="url" id="photo-3" placeholder="Photo 3 URL" style="padding: 10px; border-radius: 8px;" required>
+            <input type="url" id="photo-4" placeholder="Photo 4 URL" style="padding: 10px; border-radius: 8px;" required>
+
+            <button type="submit" class="btn yes" style="margin-top: 10px;">Generate My Link</button>
+        </form>
+        
+        <div id="output-section" style="margin-top: 20px; text-align: center; display: none;">
+            <p style="font-weight: bold; color: #db2777;">Copy and send this link:</p>
+            <input type="text" id="generated-link" style="padding: 10px; width: 100%; border-radius: 8px;" readonly>
         </div>
-
-        <button class="btn back" onclick="showScreen('success-container')">BACK</button>
     </div>
-
-    <!-- Gift 2: Music Player (Exact Layout) -->
-    <div id="gift-2" class="screen">
-        <h2 class="title" style="margin-bottom: 20px;">A song that reminds me of us</h2>
-        <div class="music-card-horizontal">
-            <div class="vinyl-wrapper">
-                <div class="vinyl" id="vinyl-record"></div>
-            </div>
-            <div class="song-cover-wrapper">
-                <!-- ADD SONG COVER IMAGE HERE -->
-                <img src="song-cover.jpg" class="song-bg" alt="Cover">
-                <div class="song-overlay">
-                    <div class="song-text">
-                        <!-- ADD SONG TITLE HERE -->
-                        <h3>RISK IT ALL</h3>
-                        <!-- ADD ARTIST NAME HERE -->
-                        <p>BRUNO MARS</p>
-                    </div>
-                    <!-- ADD MP3 FILE HERE -->
-                    <audio id="audio-player" src="song.mp3" controls></audio>
-                </div>
-            </div>
-        </div>
-        <button class="btn back" onclick="showScreen('success-container')">BACK</button>
-    </div>
-
-    <!-- Gift 3: Letter -->
-    <div id="gift-3" class="screen">
-        <div class="letter-card">
-            <!-- EDIT YOUR LETTER GREETING -->
-            <h2>Dear Love,</h2>
-            <!-- EDIT YOUR LETTER BODY -->
-            <p>
-                Today is all about you, and I just want you to know how grateful I am to have you in my life.
-                From the moment you came into my world, everything felt warmer, kinder, and more meaningful.
-                You make ordinary moments feel special just by being you.
-            </p>
-            <!-- EDIT YOUR LETTER SIGNATURE -->
-            <p class="letter-signature">Forever yours 💕</p>
-        </div>
-        <button class="btn back" onclick="showScreen('success-container')">BACK</button>
-    </div>
-
-    <script src="script.js"></script>
+    <script type="module" src="generator.js"></script>
 </body>
 </html>
