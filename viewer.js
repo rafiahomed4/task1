@@ -13,11 +13,22 @@ const firebaseConfig = {
 const app = initializeApp(firebaseConfig);
 const db = getFirestore(app);
 
+// Smarter Link Fixer (Auto-fixes Dropbox and Google Drive)
 function fixLink(url) {
+    if (!url) return '';
+    
     if (url.includes('drive.google.com/file/d/')) {
         const id = url.split('/d/')[1].split('/')[0];
         return `https://drive.google.com/uc?export=view&id=${id}`;
     }
+    
+    if (url.includes('dropbox.com')) {
+        if (url.includes('raw=1')) return url;
+        if (url.includes('?dl=0')) return url.replace('?dl=0', '?raw=1');
+        if (url.includes('?')) return url + '&raw=1';
+        return url + '?raw=1';
+    }
+    
     return url;
 }
 
