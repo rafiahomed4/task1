@@ -15,29 +15,35 @@ let noCount = 0;
 let yesSize = 18;
 let yesPadding = 15;
 
-noBtn.addEventListener('click', () => {
-    if (noCount < noTexts.length) {
-        questionText.innerText = noTexts[noCount];
-        noCount++;
+if (noBtn) {
+    noBtn.addEventListener('click', () => {
+        if (noCount < noTexts.length) {
+            questionText.innerText = noTexts[noCount];
+            noCount++;
+            
+            // Make YES button larger and NO button smaller
+            yesSize += 10;
+            yesPadding += 5;
+            yesBtn.style.fontSize = yesSize + 'px';
+            yesBtn.style.padding = yesPadding + 'px ' + (yesPadding * 2) + 'px';
+            
+            const noScale = 1 - (noCount * 0.15);
+            noBtn.style.transform = `scale(${noScale})`;
+        }
         
-        yesSize += 10;
-        yesPadding += 5;
-        yesBtn.style.fontSize = yesSize + 'px';
-        yesBtn.style.padding = yesPadding + 'px ' + (yesPadding * 2) + 'px';
-        
-        const noScale = 1 - (noCount * 0.15);
-        noBtn.style.transform = `scale(${noScale})`;
-    }
-    
-    if (noCount === noTexts.length) {
-        noBtn.style.display = 'none';
-    }
-});
+        if (noCount === noTexts.length) {
+            noBtn.style.display = 'none'; // Hide NO button entirely
+        }
+    });
+}
 
-yesBtn.addEventListener('click', () => {
-    showScreen('success-container');
-});
+if (yesBtn) {
+    yesBtn.addEventListener('click', () => {
+        showScreen('success-container');
+    });
+}
 
+// Navigation Logic
 function showScreen(screenId) {
     document.querySelectorAll('.screen').forEach(screen => {
         screen.classList.remove('active');
@@ -45,6 +51,7 @@ function showScreen(screenId) {
     document.getElementById(screenId).classList.add('active');
 }
 
+// Vinyl Spin Logic
 const audio = document.getElementById('audio-player');
 const vinyl = document.getElementById('vinyl-record');
 
@@ -55,5 +62,4 @@ if (audio && vinyl) {
     audio.addEventListener('pause', () => {
         vinyl.style.animationPlayState = 'paused';
     });
-}
 }
