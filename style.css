@@ -20,16 +20,9 @@ body {
     width: 100%;
     max-width: 600px;
 }
+.screen.active { display: flex; }
 
-.screen.active {
-    display: flex;
-}
-
-.gif {
-    height: 130px;
-    margin-bottom: 20px;
-}
-
+.gif { height: 130px; margin-bottom: 20px; }
 .btn-group { display: flex; gap: 15px; margin-top: 20px; align-items: center; }
 
 .btn {
@@ -45,133 +38,144 @@ body {
 }
 .btn.yes { background-color: #86efac; color: #065f46; }
 .btn.no { background-color: #fca5a5; color: #991b1b; }
-.btn.back { background-color: #fbcfe8; color: #db2777; margin-top: 30px; }
+.btn.back { background-color: #fbcfe8; color: #db2777; margin-top: 30px; position: relative; z-index: 10; }
 
 /* Gifts Row */
-.gift-row {
-    display: flex;
-    gap: 15px;
-    margin-top: 30px;
-}
-.gift-box {
-    background-color: #fbcfe8;
-    padding: 15px;
-    border-radius: 15px;
-    cursor: pointer;
-    font-size: 14px;
-    font-weight: bold;
-    color: #be185d;
-    box-shadow: 0 4px 6px rgba(0,0,0,0.1);
-    transition: transform 0.2s;
-}
+.gift-row { display: flex; gap: 15px; margin-top: 30px; }
+.gift-box { background-color: #fbcfe8; padding: 15px; border-radius: 15px; cursor: pointer; font-size: 14px; font-weight: bold; color: #be185d; box-shadow: 0 4px 6px rgba(0,0,0,0.1); transition: transform 0.2s; }
 .gift-box:hover { transform: scale(1.05); }
 .gift-img { width: 60px; height: 60px; object-fit: contain; margin-bottom: 5px; }
 
 /* Scattered Floating Photo Layout */
-.scatter-gallery {
-    position: relative;
-    width: 300px;
-    height: 380px;
-    margin: 0 auto;
-}
-
-.scatter-frame {
-    background: white;
-    padding: 8px; /* Thick white border like the reference */
-    box-shadow: 0 8px 25px rgba(0,0,0,0.15);
-    position: absolute;
-    border-radius: 2px;
-    animation: floatFrame 5s ease-in-out infinite alternate;
-}
-
-.scatter-frame img {
-    width: 130px;
-    height: 130px;
-    object-fit: cover;
-    display: block;
-    background: #333;
-}
-
-/* Positioning and unique rotation for each frame */
+.scatter-gallery { position: relative; width: 300px; height: 380px; margin: 0 auto; }
+.scatter-frame { background: white; padding: 8px; box-shadow: 0 8px 25px rgba(0,0,0,0.15); position: absolute; border-radius: 2px; animation: floatFrame 5s ease-in-out infinite alternate; }
+.scatter-frame img { width: 130px; height: 130px; object-fit: cover; display: block; background: #333; }
 .frame-1 { top: 0px; left: 10px; --rot: -8deg; z-index: 1; animation-delay: 0s; }
 .frame-2 { top: 40px; right: 10px; --rot: 12deg; z-index: 2; animation-delay: -1s; }
 .frame-3 { top: 130px; left: 20px; --rot: -5deg; z-index: 3; animation-delay: -2.5s; }
 .frame-4 { top: 170px; right: 15px; --rot: 8deg; z-index: 4; animation-delay: -1.5s; }
 .frame-5 { top: 250px; left: 70px; --rot: -3deg; z-index: 5; animation-delay: -3s; }
+@keyframes floatFrame { 0% { transform: translateY(0px) rotate(var(--rot)); } 100% { transform: translateY(-15px) rotate(var(--rot)); } }
 
-/* The smooth continuous floating movement */
-@keyframes floatFrame {
-    0% { transform: translateY(0px) rotate(var(--rot)); }
-    100% { transform: translateY(-15px) rotate(var(--rot)); }
-}
-
-/* Exact Music Player Layout */
-.music-card-horizontal {
+/* EXACT MUSIC PLAYER REPLICA */
+.music-card-exact {
     display: flex;
-    background: #fbcfe8;
-    padding: 10px;
-    border-radius: 20px;
-    gap: 10px;
-    width: 90%;
-    max-width: 350px;
-    box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+    background: #fce7f3;
+    padding: 12px;
+    border-radius: 16px;
+    gap: 12px;
+    width: 95%;
+    max-width: 400px;
+    box-shadow: 0 4px 15px rgba(219, 39, 119, 0.15);
 }
-.vinyl-wrapper {
+
+.vinyl-side {
     background: #f9a8d4;
-    border-radius: 15px;
-    padding: 15px;
+    width: 110px;
+    height: 110px;
+    border-radius: 12px;
     display: flex;
     justify-content: center;
     align-items: center;
-    width: 100px;
+    flex-shrink: 0;
 }
+
 .vinyl {
-    width: 80px;
-    height: 80px;
+    width: 90px;
+    height: 90px;
     background: repeating-radial-gradient(#111, #111 2px, #222 3px, #111 4px);
     border-radius: 50%;
-    border: 2px solid #f43f5e;
     position: relative;
     animation: spin 3s linear infinite;
     animation-play-state: paused;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.3);
 }
-.vinyl::after {
-    content: ''; position: absolute; top: 35%; left: 35%; width: 30%; height: 30%; background: #fbcfe8; border-radius: 50%;
+
+.vinyl-label {
+    position: absolute;
+    top: 50%; left: 50%;
+    transform: translate(-50%, -50%);
+    width: 32px; height: 32px;
+    background: #f43f5e;
+    border-radius: 50%;
+    border: 2px solid #111;
 }
+
+.vinyl-hole {
+    position: absolute;
+    top: 50%; left: 50%;
+    transform: translate(-50%, -50%);
+    width: 6px; height: 6px;
+    background: #f9a8d4;
+    border-radius: 50%;
+}
+
 @keyframes spin { 100% { transform: rotate(360deg); } }
 
-.song-cover-wrapper {
+.player-side {
     position: relative;
-    border-radius: 15px;
-    flex: 1;
+    flex-grow: 1;
+    border-radius: 12px;
     overflow: hidden;
-    display: flex;
-    flex-direction: column;
-    justify-content: flex-end;
+    background: #f9a8d4;
 }
+
 .song-bg {
     position: absolute;
     top: 0; left: 0; width: 100%; height: 100%;
     object-fit: cover;
     z-index: 1;
 }
-.song-overlay {
-    position: relative;
+
+.player-overlay {
+    position: absolute;
+    top: 0; left: 0; width: 100%; height: 100%;
     z-index: 2;
-    background: linear-gradient(to top, rgba(219, 39, 119, 0.9), rgba(219, 39, 119, 0.3));
-    padding: 10px;
-    height: 100%;
+    background: linear-gradient(to right, rgba(219, 39, 119, 0.95) 10%, rgba(219, 39, 119, 0.1));
     display: flex;
     flex-direction: column;
-    justify-content: flex-end;
+    justify-content: space-between;
+    padding: 10px;
+    box-sizing: border-box;
 }
-.song-text h3 { margin: 0; font-size: 14px; color: white; text-align: left; }
-.song-text p { margin: 2px 0 10px 0; font-size: 10px; color: #fce7f3; text-align: left; }
-audio { width: 100%; height: 30px; outline: none; }
 
-/* Love Letter */
-.letter-card {
-    background: #ffffff; padding: 25px; border-radius: 15px; box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1); max-width: 85%; text-align: left; color: #475569; font-size: 14px; line-height: 1.6; border: 1px solid #fbcfe8;
+.song-text h3 { margin: 0; font-size: 16px; color: white; text-align: left; font-weight: bold; }
+.song-text p { margin: 2px 0 0 0; font-size: 11px; color: #fce7f3; text-align: left; text-transform: uppercase; letter-spacing: 1px; }
+
+audio { width: 100%; height: 32px; outline: none; opacity: 0.9; }
+
+/* FULL-SCREEN LIPSTICK BACKGROUND FOR LETTER */
+#gift-3 {
+    background-image: url('kisses.jpg');
+    background-size: cover;
+    background-position: center;
+    width: 100vw;
+    height: 100vh;
+    position: fixed;
+    top: 0; left: 0;
+    z-index: 100;
 }
-.letter-card h2 { color: #db2777; margin-top: 0; font-family: Georgia, serif; }
-.letter-signature { text-align: right; font-weight: bold; color: #db2777; margin-top: 20px; }
+#gift-3.active {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.letter-card {
+    background: rgba(255, 255, 255, 0.93);
+    padding: 25px;
+    border-radius: 15px;
+    box-shadow: 0 8px 25px rgba(219, 39, 119, 0.3);
+    max-width: 85%;
+    text-align: left;
+    color: #475569;
+    font-size: 14px;
+    line-height: 1.6;
+    border: 1px solid #fbcfe8;
+    position: relative;
+    z-index: 2;
+}
+
+.letter-card h2 { color: #db2777; margin-top: 0; font-family: Georgia, serif; font-style: italic;}
+.letter-signature { text-align: right; font-weight: bold; color: #db2777; margin-top: 20px; font-style: italic; }
