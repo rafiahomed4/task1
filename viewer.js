@@ -41,10 +41,12 @@ async function loadCustomData() {
             document.querySelector('.p-right-2 img').src = fixLink(data.photos[3]);
             document.querySelector('.song-bg').src = fixLink(data.photos[4]);
 
-            // Automatically fill the middle strips using the first 4 photos
+            // Inject 8 Strip Photos
             const stripImgs = document.querySelectorAll('.photostrip img');
             stripImgs.forEach((img, index) => {
-                img.src = fixLink(data.photos[index % 4]);
+                if (data.photos[5 + index]) {
+                    img.src = fixLink(data.photos[5 + index]);
+                }
             });
 
             // Inject Text & Audio
