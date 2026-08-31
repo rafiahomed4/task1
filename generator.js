@@ -1,14 +1,14 @@
 import { initializeApp } from "https://www.gstatic.com/firebasejs/10.13.0/firebase-app.js";
 import { getFirestore, collection, addDoc } from "https://www.gstatic.com/firebasejs/10.13.0/firebase-firestore.js";
 
-// REPLACE THIS OBJECT WITH YOUR FIREBASE CONFIG KEYS
 const firebaseConfig = {
-  apiKey: "YOUR_API_KEY",
-  authDomain: "YOUR_PROJECT_ID.firebaseapp.com",
-  projectId: "YOUR_PROJECT_ID",
-  storageBucket: "YOUR_PROJECT_ID.appspot.com",
-  messagingSenderId: "YOUR_SENDER_ID",
-  appId: "YOUR_APP_ID"
+  apiKey: "AIzaSyCgA0XOLiguqGoXVaHSu3quJuWtVZCSRB4",
+  authDomain: "work1-bd13f.firebaseapp.com",
+  projectId: "work1-bd13f",
+  storageBucket: "work1-bd13f.firebasestorage.app",
+  messagingSenderId: "123748250468",
+  appId: "1:123748250468:web:f7be9f336dd695ac8dc071",
+  measurementId: "G-2KXHCHL9K2"
 };
 
 const app = initializeApp(firebaseConfig);
@@ -17,7 +17,6 @@ const db = getFirestore(app);
 document.getElementById('generator-form').addEventListener('submit', async (e) => {
     e.preventDefault();
     
-    // Disable button to prevent double-clicks
     const submitBtn = document.querySelector('button[type="submit"]');
     submitBtn.innerText = "Generating...";
     submitBtn.disabled = true;
@@ -36,11 +35,8 @@ document.getElementById('generator-form').addEventListener('submit', async (e) =
     };
 
     try {
-        // Save to Firestore 'gifts' collection
         const docRef = await addDoc(collection(db, "gifts"), giftData);
-        
-        // Build the shareable link using the generated document ID
-        const baseUrl = window.location.href.replace('index.html', '');
+        const baseUrl = window.location.href.split('index.html')[0];
         const shareLink = `${baseUrl}gift.html?id=${docRef.id}`;
         
         document.getElementById('output-section').style.display = 'block';
