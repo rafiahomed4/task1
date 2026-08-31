@@ -95,19 +95,33 @@ body {
     position: absolute;
     top: 50%; left: 50%;
     transform: translate(-50%, -50%);
-    width: 32px; height: 32px;
+    width: 42px; /* Made slightly larger to fit the word */
+    height: 42px;
     background: #f43f5e;
     border-radius: 50%;
     border: 2px solid #111;
+}
+
+.vinyl-text {
+    position: absolute;
+    top: 5px; /* Positions the word right above the center hole */
+    left: 50%;
+    transform: translateX(-50%);
+    font-size: 9px;
+    font-weight: bold;
+    color: white;
+    letter-spacing: 1px;
+    text-transform: uppercase;
 }
 
 .vinyl-hole {
     position: absolute;
     top: 50%; left: 50%;
     transform: translate(-50%, -50%);
-    width: 6px; height: 6px;
+    width: 8px; height: 8px;
     background: #f9a8d4;
     border-radius: 50%;
+    border: 1px solid #111;
 }
 
 @keyframes spin { 100% { transform: rotate(360deg); } }
