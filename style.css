@@ -10,7 +10,7 @@ body {
     margin: 0;
     text-align: center;
     color: #db2777;
-    overflow: hidden;
+    overflow: auto;
 }
 
 .screen {
