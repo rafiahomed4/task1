@@ -13,7 +13,6 @@ const firebaseConfig = {
 const app = initializeApp(firebaseConfig);
 const db = getFirestore(app);
 
-// Automatically convert Google Drive links to direct image links
 function fixLink(url) {
     if (url.includes('drive.google.com/file/d/')) {
         const id = url.split('/d/')[1].split('/')[0];
@@ -35,19 +34,25 @@ async function loadCustomData() {
         if (docSnap.exists()) {
             const data = docSnap.data();
 
-            // Inject 5 Photos (4 Polaroids + 1 Song Cover Background)
+            // Inject 5 Main Photos
             document.querySelector('.p-left-1 img').src = fixLink(data.photos[0]);
             document.querySelector('.p-left-2 img').src = fixLink(data.photos[1]);
             document.querySelector('.p-right-1 img').src = fixLink(data.photos[2]);
             document.querySelector('.p-right-2 img').src = fixLink(data.photos[3]);
             document.querySelector('.song-bg').src = fixLink(data.photos[4]);
 
+            // Automatically fill the middle strips using the first 4 photos
+            const stripImgs = document.querySelectorAll('.photostrip img');
+            stripImgs.forEach((img, index) => {
+                img.src = fixLink(data.photos[index % 4]);
+            });
+
             // Inject Text & Audio
             document.querySelector('.song-text h3').innerText = data.songTitle;
             document.querySelector('.song-text p').innerText = data.artistName;
             document.getElementById('audio-player').src = fixLink(data.songUrl);
             
-            // Inject Letter (Targets the first paragraph inside the letter card)
+            // Inject Letter
             document.querySelectorAll('.letter-card p')[0].innerText = data.letter;
         }
     } catch (error) {
