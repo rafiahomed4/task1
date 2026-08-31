@@ -1,6 +1,5 @@
 import { initializeApp } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-app.js";
 import { getFirestore, collection, addDoc } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-firestore.js";
-import { getStorage, ref, uploadBytes, getDownloadURL } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-storage.js";
 
 const firebaseConfig = {
   apiKey: "AIzaSyCgA0XOLIguqGoXVaHSu3quJuWtVZCSRB4",
@@ -14,7 +13,6 @@ const firebaseConfig = {
 
 const app = initializeApp(firebaseConfig);
 const db = getFirestore(app);
-const storage = getStorage(app);
 
 const form = document.getElementById('generator-form');
 const submitBtn = form.querySelector('button[type="submit"]');
@@ -22,40 +20,22 @@ const outputLink = document.getElementById('output-link');
 
 form.addEventListener('submit', async (e) => {
     e.preventDefault();
-    submitBtn.innerText = "Uploading to Database... ⏳";
+    submitBtn.innerText = "Saving Gift... ⏳";
     submitBtn.disabled = true;
 
     try {
-        const letter = document.getElementById('letter-input').value;
-        const songTitle = document.getElementById('song-title').value;
-        const artistName = document.getElementById('artist-name').value;
-        const photosInput = document.getElementById('photos-upload');
-        const songInput = document.getElementById('song-upload');
-
-        if (photosInput.files.length === 0 || songInput.files.length === 0) {
-            throw new Error("Please select both photos and a song.");
-        }
-
-        const songFile = songInput.files[0];
-        const songRef = ref(storage, `songs/${Date.now()}_${songFile.name}`);
-        await uploadBytes(songRef, songFile);
-        const songUrl = await getDownloadURL(songRef);
-
-        const photoUrls = [];
-        for (let i = 0; i < photosInput.files.length; i++) {
-            const photoFile = photosInput.files[i];
-            const photoRef = ref(storage, `photos/${Date.now()}_${photoFile.name}`);
-            await uploadBytes(photoRef, photoFile);
-            const url = await getDownloadURL(photoRef);
-            photoUrls.push(url);
-        }
-
         const docRef = await addDoc(collection(db, "gifts"), {
-            letter: letter,
-            songTitle: songTitle,
-            artistName: artistName,
-            songUrl: songUrl,
-            photoUrls: photoUrls,
+            letter: document.getElementById('letter-input').value,
+            songTitle: document.getElementById('song-title').value,
+            artistName: document.getElementById('artist-name').value,
+            songUrl: document.getElementById('song-url').value,
+            photos: [
+                document.getElementById('photo-1').value,
+                document.getElementById('photo-2').value,
+                document.getElementById('photo-3').value,
+                document.getElementById('photo-4').value,
+                document.getElementById('photo-5').value
+            ],
             createdAt: new Date()
         });
 
