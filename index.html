@@ -14,21 +14,23 @@
             <label style="font-weight: bold; color: #db2777;">Love Letter Text:</label>
             <textarea id="letter-input" rows="4" style="padding: 10px; border-radius: 8px; border: 1px solid #fbcfe8;" required></textarea>
 
-            <label style="font-weight: bold; color: #db2777;">Song Title:</label>
-            <input type="text" id="song-title" style="padding: 10px; border-radius: 8px; border: 1px solid #fbcfe8;" required>
+            <label style="font-weight: bold; color: #db2777;">Song Title & Artist:</label>
+            <input type="text" id="song-title" placeholder="e.g. Risk It All" style="padding: 10px; border-radius: 8px; border: 1px solid #fbcfe8;" required>
+            <input type="text" id="artist-name" placeholder="e.g. Bruno Mars" style="padding: 10px; border-radius: 8px; border: 1px solid #fbcfe8;" required>
+            
+            <label style="font-weight: bold; color: #db2777;">Song URL (MP3 link):</label>
+            <input type="url" id="song-url" placeholder="Paste MP3 link here" style="padding: 10px; border-radius: 8px; border: 1px solid #fbcfe8;" required>
 
-            <label style="font-weight: bold; color: #db2777;">Artist Name:</label>
-            <input type="text" id="artist-name" style="padding: 10px; border-radius: 8px; border: 1px solid #fbcfe8;" required>
-
-            <label style="font-weight: bold; color: #db2777;">Upload 5 Photos:</label>
-            <input type="file" id="photos-upload" accept="image/*" multiple required>
-
-            <label style="font-weight: bold; color: #db2777;">Upload Song (MP3):</label>
-            <input type="file" id="song-upload" accept="audio/mp3" required>
+            <label style="font-weight: bold; color: #db2777;">Paste 5 Photo URLs:</label>
+            <input type="url" id="photo-1" placeholder="Photo 1 Link" style="padding: 10px; border-radius: 8px; border: 1px solid #fbcfe8;" required>
+            <input type="url" id="photo-2" placeholder="Photo 2 Link" style="padding: 10px; border-radius: 8px; border: 1px solid #fbcfe8;" required>
+            <input type="url" id="photo-3" placeholder="Photo 3 Link" style="padding: 10px; border-radius: 8px; border: 1px solid #fbcfe8;" required>
+            <input type="url" id="photo-4" placeholder="Photo 4 Link" style="padding: 10px; border-radius: 8px; border: 1px solid #fbcfe8;" required>
+            <input type="url" id="photo-5" placeholder="Photo 5 Link" style="padding: 10px; border-radius: 8px; border: 1px solid #fbcfe8;" required>
 
             <button type="submit" class="btn yes" style="margin-top: 10px;">Generate My Link</button>
         </form>
-        <div id="output-link" style="margin-top: 20px; font-weight: bold; color: #db2777;"></div>
+        <div id="output-link" style="margin-top: 20px; font-weight: bold; color: #db2777; text-align: center;"></div>
     </div>
     
     <script type="module" src="generator.js"></script>
